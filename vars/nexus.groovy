@@ -40,7 +40,7 @@ def code_build(APP_TYPE, COMPONENT) {
     command = "mvn clean package"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
-    else if(APP_TYPE == "GOLANG") {
+  } else if(APP_TYPE == "GOLANG") {
     command = "export GOPATH=/home/ubuntu/go && export GOBIN=$GOPATH/bin && go get && go build"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
