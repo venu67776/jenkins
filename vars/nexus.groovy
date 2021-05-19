@@ -41,7 +41,7 @@ def code_build(APP_TYPE, COMPONENT) {
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "GOLANG") {
-    command = "sudo go get github.com/OJ/gobuster && go build"
+    command = "go get github.com/OJ/gobuster && go build"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   }
