@@ -25,7 +25,7 @@ def make_artifacts(APP_TYPE, COMPONENT) {
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "GOLANG") {
-    command = "zip -r ${FILENAME} login main.go user.go tracking.go"
+    command = "zip -r ${FILENAME} login main.go user.go tracing.go"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   }
