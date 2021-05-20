@@ -22,7 +22,7 @@ for (i in 0..count) {
         'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
           'userRemoteConfigs' {
             'hudson.plugins.git.UserRemoteConfig' {
-              'url'('https://github.com/zsdevops01/'+j+'.git')
+              'url'('https://github.com/venu67776/'+j+'.git')
             }
           }
           'branches' {
