@@ -41,7 +41,7 @@ def code_build(APP_TYPE, COMPONENT) {
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "GOLANG") {
-    command = "  sudo /home/ubuntu/workspace/CI-Pipelines/login-ci && go get  && go build"
+    command = "  export GOPATH=/home/ubuntu/workspace/CI-pipelines/login-ci && export GOBIN=$GOPATH/bin && go get && go build  && go build"
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "NGINX") {
