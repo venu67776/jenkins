@@ -3,7 +3,7 @@ def nexus(COMPONENT) {
   def get_branch_exec=sh(returnStdout: true, script: get_branch)
   def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
 
-  command = "curl -f -v -u admin:admin --upload-file ${FILENAME} http://172.31.9.118:8081/repository/${COMPONENT}/${FILENAME}"
+  command = "curl -f -v -u admin:admin --upload-file ${FILENAME} http://172.31.13.168:8081/repository/${COMPONENT}/${FILENAME}"
   def execute_state=sh(returnStdout: true, script: command)
 }
 
@@ -41,7 +41,7 @@ def code_build(APP_TYPE, COMPONENT) {
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "GOLANG") {
-    command = "go get -d && go build"
+    command = "go get -d && go build "
     def execute_com=sh(returnStdout: true, script: command)
     print execute_com
   } else if(APP_TYPE == "NGINX") {
