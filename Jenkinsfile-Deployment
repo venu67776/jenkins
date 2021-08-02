@@ -25,4 +25,27 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy to DEV Env') {
+            when {
+                environment name: 'ENV', value: 'dev'
+            }
+            steps {
+                git branch: 'main', url: 'https://github.com/venu67776/ansible.git'
+                sh '''
+                    ansible-playbook -i inv todo.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION} -e ansible_password=${UBUNTU_SSH_PASSWORD}
+                '''
+            }
+        }
+
+        stage('Deploy to PROD Env') {
+            when {
+                environment name: 'ENV', value: 'prod'
+            }
+            steps {
+                sh 'echo ansible-playbook .....'
+            }
+        }
+
     }
+}
