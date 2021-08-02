@@ -18,32 +18,7 @@ pipeline {
         stage('Find the Server') {
             steps {
                 sh '''
-                    aws ec2 describe-instances --filters "Name=tag:Name,Values=frontend-dev" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
-
+                    aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}-${ENV}" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
                 '''
             }
         }
-
-        stage('Deploy to DEV Env') {
-            when {
-                environment name: 'ENV', value: 'dev'
-            }
-            steps {
-                git branch: 'main', url: 'https://github.com/venu67776/ansible.git'
-                sh '''
-                    ansible-playbook -i inv todo.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION} -e ansible_password=${UBUNTU_SSH_PASSWORD}
-                '''
-            }
-        }
-
-        stage('Deploy to PROD Env') {
-            when {
-                environment name: 'ENV', value: 'prod'
-            }
-            steps {
-                sh 'echo ansible-playbook .....'
-            }
-        }
-
-    }
-}
