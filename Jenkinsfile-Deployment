@@ -31,9 +31,9 @@ pipeline {
                 environment name: 'ENV', value: 'dev'
             }
             steps {
-                git branch: 'main', url: 'https://github.com/venu67776/ansible.git'
-                ls
+                git branch: 'main', url: 'https://github.com/venu67776/ansible.git' 
                 sh '''
+                ls
                     ansible-playbook -i inv todo.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION} -e ansible_password=${UBUNTU_SSH_PASSWORD}
                 '''
             }
