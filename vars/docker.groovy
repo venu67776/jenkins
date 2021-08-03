@@ -8,7 +8,7 @@ def call(Map params = [:]) {
   // End Default + Required Arguments
   pipeline {
     agent {
-      label "${args.SLAVE_LABEL}"
+      label 'DOCKER'
     }
 
     triggers {
