@@ -1,14 +1,16 @@
+
 def call(Map params = [:]) {
-  // Start Default Arguments
+
   def args = [
-          SLAVE_LABEL               : "DOCKER",
+          SLAVE_LABEL : "DOCKER"
   ]
   args << params
 
-  // End Default + Required Arguments
   pipeline {
     agent {
-      label 'DOCKER'
+      node {
+        label "${args.SLAVE_LABEL}"
+      }
     }
 
     triggers {
@@ -31,8 +33,8 @@ def call(Map params = [:]) {
             env.get_branch_exec=sh(returnStdout: true, script: get_branch)
           }
           sh '''
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 488617992296.dkr.ecr.us-east-1.amazonaws.com
-            docker build -t 488617992296.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec} .
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 734529938452.dkr.ecr.us-east-1.amazonaws.com
+            docker build -t 734529938452.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec} .
           '''
         }
       }
