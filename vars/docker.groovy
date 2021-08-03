@@ -11,6 +11,7 @@ def call(Map params = [:]) {
         label "${args.SLAVE_LABEL}"
       }
     }
+  }
 
     triggers {
       pollSCM('* * * * 1-5')
