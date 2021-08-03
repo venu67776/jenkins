@@ -1,17 +1,15 @@
 def call(Map params = [:]) {
-
+  // Start Default Arguments
   def args = [
-        SLAVE_LABEL :   "DOCKER"
+          SLAVE_LABEL               : 'DOCKER',
   ]
   args << params
 
+  // End Default + Required Arguments
   pipeline {
     agent {
-      node {
-        label "${args.SLAVE_LABEL}"
-      }
+      label "${args.SLAVE_LABEL}"
     }
-  }
 
     triggers {
       pollSCM('* * * * 1-5')
