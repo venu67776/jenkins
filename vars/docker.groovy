@@ -1,7 +1,7 @@
 def call(Map params = [:]) {
 
   def args = [
-        SLAVE_LABEL :   "NGINX"
+        SLAVE_LABEL :   "DOCKER"
   ]
   args << params
 
