@@ -1,17 +1,15 @@
 def call(Map params = [:]) {
-  // Start Default Arguments
+
   def args = [
-      SLAVE_LABEL : "DOCKER"
+          SLAVE_LABEL : "DOCKER"
   ]
   args << params
 
-  // End Default + Required Arguments
   pipeline {
     agent {
-    node{
+      node {
         label "${args.SLAVE_LABEL}"
-    }
-      
+      }
     }
 
     triggers {
@@ -40,11 +38,19 @@ def call(Map params = [:]) {
         }
       }
 
-
-      stage('Docker push') {
+      stage('Docker Push') {
         steps {
           script {
-            echo working
+            get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
+            env.get_branch_exec=sh(returnStdout: true, script: get_branch)
           }
+          sh '''
+            docker push 734529938452.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec}
+          '''
         }
       }
+
+    }
+
+  }
+}
