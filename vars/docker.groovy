@@ -8,7 +8,7 @@ def call(Map params = [:]) {
   pipeline {
     agent {
       node {
-        label "${args.SLAVE_LABEL}"
+        label "DOCKER"
       }
     }
 
