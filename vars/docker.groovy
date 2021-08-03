@@ -44,8 +44,7 @@ def call(Map params = [:]) {
       stage('Docker push') {
         steps {
           script {
-            prepare = new nexus()
-            prepare.make_artifacts("${APP_TYPE}", "${COMPONENT}")
+            echo working
           }
         }
       }
