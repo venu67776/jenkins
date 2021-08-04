@@ -9,7 +9,7 @@ def call(Map params = [:]) {
   pipeline {
     agent {
       node {
-        label "DOCKER"
+        label 'DOCKER'
       }
     }
 
