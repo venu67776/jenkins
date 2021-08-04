@@ -46,7 +46,8 @@ def call(Map params = [:]) {
             env.get_branch_exec=sh(returnStdout: true, script: get_branch)
           }
           sh '''
-            docker push 488617992296.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec}
+            docker push 734529938452.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec}
+          '''
         }
       }
 
